@@ -8,7 +8,7 @@ COPY . /usr/src/app
 
 # Install the dependencies (Bao.js)
 RUN bun install
-RUN bunx prisma generate
+RUN bun x prisma generate
 
 # The port that Bao.js will listen on
 EXPOSE 8080
