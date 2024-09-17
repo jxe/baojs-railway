@@ -15,11 +15,11 @@ Bun.serve({
       return new Response("Webhook installed");
     }
     if (url.pathname === "/api/bot" && req.method === "POST") {
-      const json = (await req.json()) as { update: Update }
-      const update = json.update as Update
-      console.log('update', JSON.stringify(update));
+      const json = await req.json()
+      console.log('json', JSON.stringify(json));
+
       let replied;
-      await bot.handleUpdate(update, {
+      await bot.handleUpdate(json as Update, {
         send(payload) {
           replied = payload;
         }
