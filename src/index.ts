@@ -10,7 +10,7 @@ app.get("/", (ctx) => {
 })
 
 app.get('/install-webhook', async (ctx) => {
-  await bot.api.setWebhook(`${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/bot`)
+  await bot.api.setWebhook(`${process.env.RAILWAY_PUBLIC_DOMAIN}/api/bot`)
   return ctx.sendText('Webhook installed')
 })
 
