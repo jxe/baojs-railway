@@ -1,18 +1,33 @@
-import Bao from "baojs";
 import { bot } from '../lib/bot'
-import { Update } from "grammy/types";
+import type { Update } from "grammy/types"
 
-const app = new Bao()
-const port = parseInt(process.env.PORT || "8080")
+console.log(`Server listening!`)
 
-app.get("/", (ctx) => {
-  return ctx.sendText("Hello world from Bao.js running on Railway!")
+Bun.serve({
+  port: parseInt(process.env.PORT || "8080"),
+  async fetch(req) {
+    const url = new URL(req.url);
+    if (url.pathname === "/") return new Response("Hello world!");
+    if (url.pathname === "/install-webhook" && req.method === "GET") {
+      await bot.api.setWebhook(`${process.env.RAILWAY_PUBLIC_DOMAIN}/api/bot`);
+      return new Response("Webhook installed");
+    }
+    if (url.pathname === "/api/bot" && req.method === "POST") {
+      const update = await req.json() as Update;
+      let replied;
+      await bot.handleUpdate(update, {
+        send(payload) {
+          replied = payload;
+        }
+      });
+      return new Response(JSON.stringify(replied || {}), {
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+    return new Response("Not found", { status: 404 });
+  }
 })
 
-app.get('/install-webhook', async (ctx) => {
-  await bot.api.setWebhook(`${process.env.RAILWAY_PUBLIC_DOMAIN}/api/bot`)
-  return ctx.sendText('Webhook installed')
-})
 
 // const cb = webhookCallback(bot, (ctx: Context) => ({
 //   update: ctx.req.json() as Promise<Update>,
@@ -20,17 +35,4 @@ app.get('/install-webhook', async (ctx) => {
 //   unauthorized: () => ctx.sendEmpty({ status: 401 }),
 // }))
 
-app.post('/api/bot', async (ctx) => {
-  const update = await ctx.req.clone().json() as Update
-  let replied
-  await bot.handleUpdate(update, {
-    send(payload) {
-      replied = payload
-    }
-  })
-  if (replied) return ctx.sendJson(replied)
-  return ctx.sendEmpty()
-})
 
-const server = app.listen({ port: port });
-console.log(`Server listening on ${server.hostname}:${port}`);
