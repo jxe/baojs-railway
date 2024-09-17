@@ -21,7 +21,7 @@ app.get('/install-webhook', async (ctx) => {
 // }))
 
 app.post('/api/bot', async (ctx) => {
-  const update = await ctx.req.json() as Update
+  const update = await ctx.req.clone().json() as Update
   let replied
   await bot.handleUpdate(update, {
     send(payload) {
