@@ -2,9 +2,11 @@ import { bot } from '../lib/bot'
 import type { Update } from "grammy/types"
 
 console.log(`Server listening!`)
+await bot.init()
 
 Bun.serve({
   port: parseInt(process.env.PORT || "8080"),
+  // error: (err) => console.error(err),
   async fetch(req) {
     const url = new URL(req.url);
     if (url.pathname === "/") return new Response("Hello world!");
