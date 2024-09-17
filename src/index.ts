@@ -1,6 +1,6 @@
 import Bao from "baojs";
 import { bot } from '../lib/bot'
-import { webhookCallback } from "grammy";
+import { Update } from "grammy/types";
 
 const app = new Bao()
 const port = parseInt(process.env.PORT || "8080")
@@ -14,7 +14,23 @@ app.get('/install-webhook', async (ctx) => {
   return ctx.sendText('Webhook installed')
 })
 
-app.post('/api/bot', webhookCallback(bot, "callback"))
+// const cb = webhookCallback(bot, (ctx: Context) => ({
+//   update: ctx.req.json() as Promise<Update>,
+//   respond: (json: any) => ctx.sendJson(json),
+//   unauthorized: () => ctx.sendEmpty({ status: 401 }),
+// }))
+
+app.post('/api/bot', async (ctx) => {
+  const update = await ctx.req.json() as Update
+  let replied
+  await bot.handleUpdate(update, {
+    send(payload) {
+      replied = payload
+    }
+  })
+  if (replied) return ctx.sendJson(replied)
+  return ctx.sendEmpty()
+})
 
 const server = app.listen({ port: port });
 console.log(`Server listening on ${server.hostname}:${port}`);
