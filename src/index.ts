@@ -16,6 +16,7 @@ Bun.serve({
     }
     if (url.pathname === "/api/bot" && req.method === "POST") {
       const update = await req.json() as Update;
+      console.log({ update });
       let replied;
       await bot.handleUpdate(update, {
         send(payload) {
