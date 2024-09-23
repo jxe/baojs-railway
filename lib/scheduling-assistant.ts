@@ -12,7 +12,7 @@ const scheduleSchema = z.object({
 })
 
 export const schedulingAssistant = {
-  id: "asst_A4tDnaSW9oTrB9ikSSSTqIpM",
+  id: "asst_88Axg4RFfNYaYvyGIxQqhXR2",
   tools: {
     scheduleTool: {
       schema: scheduleSchema,
