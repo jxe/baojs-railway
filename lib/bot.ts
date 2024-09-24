@@ -34,7 +34,7 @@ bot.on('message', async (ctx) => {
 
   let result = await run(user, {
     additional_instructions:
-      `You are speaking to ${message.from.first_name} ${message.from.last_name} (${message.from.username})\n\n${currentState()}`,
+      `You are speaking to ${message.from.first_name} ${message.from.last_name} (${message.from.username})\n\n${await currentState()}`,
     additional_messages: [{ role: "user", content: message.text }],
   })
 

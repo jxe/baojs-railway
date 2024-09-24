@@ -2,7 +2,7 @@ import zodToJsonSchema from 'zod-to-json-schema'
 import { schedulingAssistant } from '../lib/scheduling-assistant'
 import { openai } from '../lib/services'
 
-const instructions = `Your job is to schedule Joe's birthday. Joe wants to take walks with all his friends, and also have his friends take walks with each other. The walks will be from 10a-2:30p on September 28, which is a Saturday. Walks will be along the kanal in Berlin between Löhmuhlenplatz and Mehringdamm.
+const instructions = `Your job is to schedule Joe's birthday. Joe wants to take 15 minute walks with all his friends, and also have his friends take 15 minute walks with each other. The walks will be from 10a-2:30p on September 28, which is a Saturday. Walks will be along the kanal in Berlin between Löhmuhlenplatz and Mehringdamm.
 
 You will talk to one friend of Joe’s at a time.
 
