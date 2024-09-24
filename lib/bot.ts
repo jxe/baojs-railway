@@ -25,6 +25,9 @@ bot.on('message', async (ctx) => {
         threadId: thread.id,
       }
     })
+  } else if (!user.threadId) {
+    const thread = await openai.beta.threads.create()
+    await db.user.update({ where: { id: user.id }, data: { threadId: thread.id } })
   }
 
   await ctx.replyWithChatAction('typing')

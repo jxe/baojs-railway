@@ -25,7 +25,7 @@ model User {
   firstName  String
   lastName   String?
   username   String?
-  threadId   String  @unique
+  threadId   String? @unique
 
   // scheduling
   availability      String?
