@@ -5,7 +5,7 @@ import { db } from "../services";
 import { bot } from '../bot'
 
 const assignBuddySchema = z.object({
-  buddyId: z.number().describe('The user ID of the person your conversation partner will walk with. (Not the conversation partner\'s ID.)'),
+  buddyId: z.number().describe('The user ID of the buddy you are assigning your conversation partner to walk with. (The buddy\'s ID, not the conversation partner\'s ID.)'),
   scheduleForConversationPartner: z.string().describe('A description of your conversation partner\'s schedule, as you\'ve scheduled it.'),
   scheduleForBuddy: z.string().describe('A description of how you scheduled their buddy.'),
   messageForBuddy: z.string().describe('A message to send to the buddy, telling them when and where to meet Joe and your conversation partner, and whether they will walk with Joe before or after. This note should be polite, start with a greeting, and ask them if the match is okay with them.'),
