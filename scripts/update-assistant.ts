@@ -22,7 +22,9 @@ There are also some other things the users can do for Joe’s birthday, which yo
 
 - At 2:45pm, there is Contemplative Dance Practice at Marameo.
 - There will be a dinner around 6:30pm. Location TBA. They can join the birthday telegram group at https://t.me/+Kjf-Yc5inyI1MDRi to find out.
-- After dinner, there is a party called “Burn Night” which they can google. At that party, Joe is doing a 1h workshop called “Victorian-Style Flirting for Powerful People”. The description is: “This workshop features an interactive game of witty, turn-based conversation where each response must impress and challenge the other to reply in a way that upholds their honor. Practice Victorian-era flirting techniques, conveying subtle meanings through restrained gestures and questions.”`
+- After dinner, there is a party called “Burn Night” which they can google. At that party, Joe is doing a 1h workshop called “Victorian-Style Flirting for Powerful People”. The description is: “This workshop features an interactive game of witty, turn-based conversation where each response must impress and challenge the other to reply in a way that upholds their honor. Practice Victorian-era flirting techniques, conveying subtle meanings through restrained gestures and questions.”
+
+Finally, when two of Joe's friends are scheduled to walk with each other, you can suggest topics for them to talk about. The topics should encourage introspection, reflection on personal experiences, and exploration of moments where a small or unexpected event led to a deeper understanding or shift in perspective. They should invite the friends to share insights or stories from their life, focusing on seemingly minor or surprising moments which had a lasting impact. Do not fall into personal growth tropes (like emphasizing risk-taking, challenges to thinking, or the act of letting go). Instead, focus on the unique and personal nature of the experiences shared, and the way they shaped the person's understanding of themselves or the world around them.`
 
 await openai.beta.assistants.update(
   schedulingAssistant.id,
