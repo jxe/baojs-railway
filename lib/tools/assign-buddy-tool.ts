@@ -5,10 +5,10 @@ import { db } from "../services";
 import { bot } from '../bot'
 
 const assignBuddySchema = z.object({
-  buddyId: z.number().describe('The user ID of the person this user is walking with. This will inform the other user they\'ve been matched.'),
-  scheduleForConversationPartner: z.string().describe('A description of the conversation partner\'s schedule'),
-  scheduleForBuddy: z.string().describe('A description of the buddy\'s schedule'),
-  messageForBuddy: z.string().describe('A message to send to the buddy this user has been matched with, telling them when and where to meet, and whether they will walk with Joe before or after. This note should be polite, start with a greeting, and ask them if the match is okay with them.'),
+  buddyId: z.number().describe('The user ID of the person your conversation partner will walk with.'),
+  scheduleForConversationPartner: z.string().describe('A description of your conversation partner\'s schedule, as you\'ve scheduled it.'),
+  scheduleForBuddy: z.string().describe('A description of how you scheduled their buddy.'),
+  messageForBuddy: z.string().describe('A message to send to the buddy, telling them when and where to meet Joe and your conversation partner, and whether they will walk with Joe before or after. This note should be polite, start with a greeting, and ask them if the match is okay with them.'),
 })
 
 export const assignBuddyTool = {

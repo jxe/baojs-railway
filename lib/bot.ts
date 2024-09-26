@@ -6,7 +6,7 @@ export const bot = new Bot("7287710734:AAGmi7R4Tro8apZ2PW-b7DBFbm9eZh6Rs2c")
 
 async function currentState() {
   const users = await db.user.findMany()
-  const roster = users.map(u => u.scheduled ? `${u.firstName} ${u.lastName} - ${u.scheduled}` : `${u.firstName} ${u.lastName} is not scheduled, but available ${u.availability}`).join('\n')
+  const roster = users.map(u => u.scheduled ? `${u.firstName} ${u.lastName} (ID ${u.id}) - Schedule is ${u.scheduled}` : `${u.firstName} ${u.lastName} (ID ${u.id}) is not scheduled, but available ${u.availability}`).join('\n')
   return users.length > 0 ? `The following friends have reported their availabilities, and some have been scheduled:\n\n${roster}` : `No friends have reported their availabilities yet.`
 }
 
